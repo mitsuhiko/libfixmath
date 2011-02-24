@@ -1,4 +1,5 @@
 #summary Using libfixmath on a microcontroller
+#labels Featured,Phase-Implementation
 
 = Introduction =
 

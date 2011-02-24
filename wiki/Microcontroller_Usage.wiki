@@ -73,10 +73,6 @@ fix16_t complex_karctan2( fix16_t y , fix16_t x)
         fix16_t r = fix16_sdiv(fix16_sadd(x,-absy),
                 fix16_sadd(x,absy));
         /* angle = .1963*r^3 - .9817*r + cf1 */
-        /*angle = fix16_sadd( fix16_sadd(
-                    fix16_mul(fix16_from_dbl(.1963),fix16_mul(r,fix16_mul(r,r))),
-                    fix16_mul(fix16_from_dbl(-0.9817),r)),
-                cf1);*/
         angle = fix16_sadd( fix16_sadd(
                     fix16_mul(12864,fix16_mul(r,fix16_mul(r,r))),
                     fix16_mul(-64336,r)),

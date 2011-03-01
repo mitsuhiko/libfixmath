@@ -1,0 +1,16 @@
+#summary Document the current formulae used in the library.
+
+= Introduction =
+The sections below document the current state of each of the major trig functions supported by the libfixmath library.  For each function a comparison to the floating point version is made.
+
+
+= Sine =
+
+<a href="http://latex.codecogs.com/png.latex?sin(x)%20=%20x%20-%20\frac{x^{3}}{3!}%20+%20\frac{x^{5}}{5!}%20-%20\frac{x^{7}}{7!}%20+\frac{x^{9}}{9!}%20-%20\frac{x^{11}}{11!}"></a>
+
+
+<a href="http://www.codecogs.com/eqnedit.php?latex=sin(x) = x - \frac{x^{3}}{3!} @plus; \frac{x^{5}}{5!} - \frac{x^{7}}{7!} @plus;\frac{x^{9}}{9!} - \frac{x^{11}}{11!}" target="_blank"><img src="http://latex.codecogs.com/png.latex?sin(x) = x - \frac{x^{3}}{3!} + \frac{x^{5}}{5!} - \frac{x^{7}}{7!} +\frac{x^{9}}{9!} - \frac{x^{11}}{11!}" title="sin(x) = x - \frac{x^{3}}{3!} + \frac{x^{5}}{5!} - \frac{x^{7}}{7!} +\frac{x^{9}}{9!} - \frac{x^{11}}{11!}" /></a>
+
+<a href="http://www.codecogs.com/eqnedit.php?latex=\sum \alpha ^{\beta }"
+target="_blank"><img src="http://latex.codecogs.com/gif.latex?\sum \alpha ^{\beta
+}%.png" title="\sum \alpha ^{\beta }" /></a>

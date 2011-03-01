@@ -1,4 +1,5 @@
 #summary Document the current formulae used in the library.
+#labels Phase-Implementation,Featured
 
 = Introduction =
 The sections below document the current state of each of the major trig functions supported by the libfixmath library.  For each function a comparison to the floating point version is made.

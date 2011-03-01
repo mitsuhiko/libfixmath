@@ -48,7 +48,7 @@ The angle is then input into the following Taylor series.
 
 The following graph shows the error for this implementation versus the math.h sine approximation.  The approximation still begins to vary around the +-pi/2 value but the error is very small.  for improved accuracy the 6th order Taylor series could be used with the above constraints 
 
-[INSERT GRAPH HERE]
+[http://libfixmath.googlecode.com/svn/images/sinf-fix16altsin.png]
 
 Using the fixtest program the following numbers are generated (compiled with -O3)
 ||Processor || Float support || Fixed runtime / Float runtime || Error ||
@@ -77,6 +77,9 @@ The Tangent is calculated using the following identity. Since the approximation 
 
 [http://latex.codecogs.com/png.latex?\large%20tan(x)%20=%20\frac{sin(x)}{cos(x)}%.png]
 
+The Tangent function could use some work.  When either sin(x) or cos(x) approaches 0 the error gets huge... I limited this graph to +-1.5
+[http://libfixmath.googlecode.com/svn/images/tanf-fix16_tan.png]
+
 TODO
 ||Processor || Float support || Fixed runtime / Float runtime || Error ||
 ||2GHz Core Duo || Yes ||  ||  ||
@@ -90,3 +93,19 @@ TODO
 
 ----
 =ArcTangent=
+The ArcTangent is calculated using the approximation found at [http://www.dspguru.com/dsp/tricks/fixed-point-atan2-with-self-normalization]. And optimized by flatmush
+
+
+||Processor || Float support || Fixed runtime / Float runtime || Error ||
+||2GHz Core Duo || Yes || 3.47 || .01%  ||
+||ARM Cortex-M0|| No || .623 || .004% ||
+
+
+==Alternate ArcTangent==
+Using this approximation no optimization of the code was done
+
+[http://libfixmath.googlecode.com/svn/images/atanf-fix16_atan.png]
+
+||Processor || Float support || Fixed runtime / Float runtime || Error ||
+||2GHz Core Duo || Yes || 3.23 || .01%  ||
+||ARM Cortex-M0|| No || .330 || .004% ||

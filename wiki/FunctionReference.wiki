@@ -1,0 +1,24 @@
+#summary List of implemented functions
+
+= Q16.16 Fixed point functions =
+
+These functions operate on 32-bit numbers, `fix16_t`, which have 16 bit integer part and 16 bit fractional part.
+
+== Basic arithmetic ==
+These functions perform rounding and detect overflows, unless disabled with CompilationOptions.
+
+  * `fix16_add(a,b)` Addition
+  ** Implementation 1: just C's + operator
+  ** Implementation 2: with overflow detection
+  * `fix16_sub(a,b)` Subtraction.
+  ** Implementation 1: just C's - operator
+  ** Implementation 2: with overflow detection
+  * `fix16_mul(a,b)` Multiplication .
+  ** Implementation 1: using `int32_t * int32_t -> int64_t`
+  ** Implementation 2: using `(u)int16_t * (u)int16_t -> (u)int32_t`
+  ** Implementation 3: using `uint8_t * uint8_t -> int16_t`
+  * `fix16_div(a,b)` Division.
+  ** Implementation 1: using `uint32_t / uint32_t`
+  ** Implementation 2: performing division manually with `uint32_t`
+
+Accuracy: these functions are covered by UnitTests and are accurate to Fix16Limits.

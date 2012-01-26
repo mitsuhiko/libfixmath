@@ -1,0 +1,34 @@
+#summary Some performance testing results.
+#labels Featured
+
+= Performance benchmarks =
+The benchmarks below are shown in different configurations:
+  * _ro_ is with rounding and overflow detection enabled.
+  * _nn_ is `-DFIXMATH_NO_OVERFLOW -DFIXMATH_NO_ROUNDING`, ie. both disabled.
+
+The number after the configuration means the wordwidth setting, which does not affect accuracy but is selected to be suitable for the platform:
+  * _64_ is default
+  * _32_ is with `-DFIXMATH_NO_64BIT`
+  * _08_ is with `-DFIXMATH_OPTIMIZE_8BIT`
+
+The performance tests are performed on a quite small number of testcases, because of the memory needed to store correct answers. The average number may not be representative of the average value in a real application, but the minimum and maximum values likely are quite accurate.
+
+== ARM Cortex M3 ==
+Using simulator qemu-system-arm version 0.15.50 and compiler Sourcery G++ Lite 2011.03-42. The values are the _number of instructions executed_. Most instructions on the platform take 1 cycle to execute, with some taking 2 cycles.
+
+|| *Operation* || *min* || *avg* || *max* || *configuration* ||
+|| `fix16_add` ||    9  ||    9  ||   11  ||            ro64 ||
+|| `fix16_add` ||    2  ||    2  ||    2  ||            nn64 ||
+|| float add   ||   22  ||   50  ||   63  ||                 ||
+|| `fix16_sub` ||    9  ||   10  ||   11  ||            ro64 ||
+|| `fix16_sub` ||    2  ||    2  ||    2  ||            nn64 ||
+|| float sub   ||   23  ||   51  ||   64  ||                 ||
+|| `fix16_mul` ||   12  ||   17  ||   20  ||            ro64 ||
+|| `fix16_mul` ||    8  ||    8  ||    8  ||            nn64 ||
+|| float mul   ||   23  ||   31  ||   36  ||                 ||
+|| `fix16_div` ||   37  ||   54  ||   72  ||            ro64 ||
+|| `fix16_div` ||   37  ||   47  ||   62  ||            nn64 ||
+|| float div   ||   23  ||  123  ||  152  ||                 ||
+|| `fix16_sqrt`||  142  ||  169  ||  225  ||            ro64 ||
+|| `fix16_sqrt`||  139  ||  166  ||  222  ||            nn64 ||
+|| float sqrtf ||  361  ||  361  ||  361  ||                 ||

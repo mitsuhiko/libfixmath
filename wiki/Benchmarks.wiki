@@ -13,22 +13,26 @@ The number after the configuration means the wordwidth setting, which does not a
 
 The performance tests are performed on a quite small number of testcases, because of the memory needed to store correct answers. The average number may not be representative of the average value in a real application, but the minimum and maximum values likely are quite accurate.
 
+The performance is compared to compiler's own 32-bit `float` implementation.
+
 == ARM Cortex M3 ==
 Using simulator qemu-system-arm version 0.15.50 and compiler Sourcery G++ Lite 2011.03-42. The values are the _number of instructions executed_. Most instructions on the platform take 1 cycle to execute, with some taking 2 cycles.
 
-|| *Operation* || *min* || *avg* || *max* || *configuration* ||
-|| `fix16_add` ||    9  ||    9  ||   11  ||            ro64 ||
-|| `fix16_add` ||    2  ||    2  ||    2  ||            nn64 ||
-|| float add   ||   22  ||   50  ||   63  ||                 ||
-|| `fix16_sub` ||    9  ||   10  ||   11  ||            ro64 ||
-|| `fix16_sub` ||    2  ||    2  ||    2  ||            nn64 ||
-|| float sub   ||   23  ||   51  ||   64  ||                 ||
-|| `fix16_mul` ||   12  ||   17  ||   20  ||            ro64 ||
-|| `fix16_mul` ||    8  ||    8  ||    8  ||            nn64 ||
-|| float mul   ||   23  ||   31  ||   36  ||                 ||
-|| `fix16_div` ||   37  ||   54  ||   72  ||            ro64 ||
-|| `fix16_div` ||   37  ||   47  ||   62  ||            nn64 ||
-|| float div   ||   23  ||  123  ||  152  ||                 ||
-|| `fix16_sqrt`||  142  ||  169  ||  225  ||            ro64 ||
-|| `fix16_sqrt`||  139  ||  166  ||  222  ||            nn64 ||
-|| float sqrtf ||  361  ||  361  ||  361  ||                 ||
+Compiler options: `-mcpu=cortex-m3 -mthumb -O2`
+
+|| *Operation*     || || *min* || *avg* || *max* || *configuration* || *code size (bytes)* ||
+|| add || `fix16_add` ||    9  ||    9  ||   11  ||            ro64 || 26  ||
+||     || `fix16_add` ||    2  ||    2  ||    2  ||            nn64 || ~2  ||
+||     || float add   ||   22  ||   50  ||   63  ||                 || 352 ||
+|| sub || `fix16_sub` ||    9  ||   10  ||   11  ||            ro64 || 26  ||
+||     || `fix16_sub` ||    2  ||    2  ||    2  ||            nn64 || ~2  ||
+||     || float sub   ||   23  ||   51  ||   64  ||                 || 356 ||
+|| mul || `fix16_mul` ||   12  ||   17  ||   20  ||            ro64 || 76  ||
+||     || `fix16_mul` ||    8  ||    8  ||    8  ||            nn64 || 12  ||
+||     || float mul   ||   23  ||   31  ||   36  ||                 || 360 ||
+|| div || `fix16_div` ||   37  ||   54  ||   72  ||            ro64 || 182 ||
+||     || `fix16_div` ||   37  ||   47  ||   62  ||            nn64 || 166 ||
+||     || float div   ||   23  ||  123  ||  152  ||                 || 310 ||
+|| sqrt|| `fix16_sqrt`||  142  ||  169  ||  225  ||            ro64 || 126 ||
+||     || `fix16_sqrt`||  139  ||  166  ||  222  ||            nn64 || 120 ||
+||     || float sqrtf ||  361  ||  361  ||  361  ||                 || 354 ||

@@ -5,6 +5,18 @@
 
 These functions operate on 32-bit numbers, `fix16_t`, which have 16 bit integer part and 16 bit fractional part.
 
+== Conversion functions ==
+Conversion from integers and floating point values. These conversions retain the numeric value and perform rounding where necessary.
+
+  * `fix16_from_int(a)` Simply multiplies a by `fix16_one = 65536`
+  * `fix16_to_int(a)` Divides by `fix16_one` and rounds to nearest integer.
+  * `fix16_from_float(a)` Multiplies by `fix16_one` and rounds to nearest value.
+  * `fix16_to_float(a)` Divides by `fix16_one`. Rounding is according to the current floating point mode.
+  * `fix16_from_dbl(a)` Multiplies by `fix16_one` and rounds to nearest value.
+  * `fix16_to_dbl(a)` Divides by `fix16_one`. All `fix16_t` values fit into a `double`, so no rounding happens.
+
+Accuracy: some of these are not yet covered by tests.
+
 == Basic arithmetic ==
 These functions perform rounding and detect overflows, unless disabled with CompilationOptions. When overflow is detected, they return `fix16_overflow` as a marker value.
 

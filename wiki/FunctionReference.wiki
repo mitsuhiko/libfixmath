@@ -49,8 +49,11 @@ Accuracy: these functions are not yet covered by tests.
 == Transcendental functions ==
 Roots, exponents & similar.
 
-  * `fix16_sqrt(a)` Square root. Performs rounding and is accurate to Fix16Limits. Covered by UnitTests.
-  * `fix16_exp(a)` Exponential function. Performs rounding. Accuracy unknown.
+  * `fix16_sqrt(a)` Square root. Performs rounding and is accurate to Fix16Limits.
+  * `fix16_exp(a)` Exponential function using power series approximation. Accuracy depends on range, worst case +-40 absolute for negative inputs and +-0.003% for positive inputs. Average error is +-1 for neg and +-0.0003% for pos.
+  * `fix16_log(a)` Natural logarithm using Newton approximation and fix16_exp(). Worst case error +-3 absolute, average error less than 1 unit.
+
+These functions are covered by UnitTests.
 
 == Trigonometric functions ==
 Functions for sin, tan etc.
